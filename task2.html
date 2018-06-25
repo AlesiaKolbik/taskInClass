@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moving Object</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width:100%;
+            max-height: 100%;
+        }
+        body{
+            background: #a0ebff;
+
+        }
+        .flower{
+            width:150px;
+            height:150px;
+            display: inline-block;
+            position: absolute;
+        }
+        .center{
+            border-radius: 100px;
+            background: #ffce3d;
+            transform:skewY(10deg);
+        }
+        .petal{
+            border-bottom-left-radius: 150px;
+            border-bottom-right-radius: 100px;
+            border-top-right-radius:150px;
+        }
+        .white_petal{
+            transform:rotate(-33deg);
+            background: white;
+        }
+        .red_petal{
+            transform:rotate(170deg);
+            background: red;
+        }
+        .blue_petal{
+            transform:rotate(-90deg);
+            background: blue;
+        }
+        .violet_petal{
+            transform:rotate(40deg);
+            background: blueviolet;
+        }
+        .green_petal{
+            transform:rotate(95deg);
+            background: greenyellow;
+        }
+        .flower:active{
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body >
+<div class = "flower center" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<div class = "flower petal white_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<div class = "flower petal red_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<div class = "flower petal blue_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<div class = "flower petal violet_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<div class = "flower petal green_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+
+<script>
+    "use strict";
+
+    let objStartPosition = {};
+    let objActive = null;
+    let lastZIndex = 1;
+
+function takeObj(e) {
+    objActive = e.target;
+    let coordsObj = getComputedStyle(objActive);
+    objStartPosition.top = coordsObj.top;
+    objStartPosition.left = coordsObj.left;
+    objStartPosition.cursX = e.clientX;
+    objStartPosition.cursY = e.clientY;
+    objActive.style.zIndex = lastZIndex;
+    lastZIndex ++;
+}
+
+function moveObj(e) {
+    if(objActive){
+        objActive.style.top = parseInt(objStartPosition.top) + (e.clientY - objStartPosition.cursY) + 'px';
+        objActive.style.left = parseInt(objStartPosition.left) + (e.clientX - objStartPosition.cursX) + 'px';
+    }
+}
+
+function putObj(e) {
+    objStartPosition = {};
+    objActive = null;
+
+}
+
+</script>
+</body>
+</html>
