@@ -26,7 +26,7 @@
         .center{
             border-radius: 100px;
             background: #ffce3d;
-            transform:skewY(10deg);
+            transform:skewY(5deg);
         }
         .petal{
             border-bottom-left-radius: 150px;
@@ -59,13 +59,13 @@
 
     </style>
 </head>
-<body >
-<div class = "flower center" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
-<div class = "flower petal white_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
-<div class = "flower petal red_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
-<div class = "flower petal blue_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
-<div class = "flower petal violet_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
-<div class = "flower petal green_petal" onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj();"></div>
+<body onmousedown="takeObj(event);" onmousemove="moveObj(event);" onmouseup="putObj(event);" onmouseout="putObj(event);">
+<div class = "flower center"></div>
+<div class = "flower petal white_petal" ></div>
+<div class = "flower petal red_petal" ></div>
+<div class = "flower petal blue_petal" ></div>
+<div class = "flower petal violet_petal"></div>
+<div class = "flower petal green_petal" ></div>
 
 <script>
     "use strict";
@@ -76,7 +76,7 @@
 
 function takeObj(e) {
     objActive = e.target;
-    let coordsObj = getComputedStyle(objActive);
+    let coordsObj = objActive.getBoundingClientRect();
     objStartPosition.top = coordsObj.top;
     objStartPosition.left = coordsObj.left;
     objStartPosition.cursX = e.clientX;
